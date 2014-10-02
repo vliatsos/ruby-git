@@ -22,7 +22,12 @@ module Git
     def apply(index=nil)
       @base.lib.stash_apply(index)
     end
-    
+
+    def drop(index=nil)
+      @base.lib.stash_drop(index)
+      @stashes.shift unless @stashes.empty?
+    end
+
     def clear
       @base.lib.stash_clear
       @stashes = []
